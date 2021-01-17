@@ -1,0 +1,13 @@
+﻿- Exit must be at the boarder of the board not in the middle.
+
+- Per each step, says what happened:
+	- hit mine
+	- left with success (reached the exit)
+	- keep going..
+
+array of arrays is the board 
+	- width is the columns
+	- height is the lines
+	- the value can be Enum - Mine or Exit. -> TileEnum 
+
+	...
