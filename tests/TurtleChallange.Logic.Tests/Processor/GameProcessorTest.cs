@@ -6,13 +6,15 @@ using Xunit;
 using static TurtleChallange.Logic.Tests.TestData.GameProcessorTestData;
 using static TurtleChallange.Logic.Tests.TestData.Models.TurtleModelTestData;
 using static TurtleChallange.Logic.Tests.TestData.Models.BoardModelTestData;
-using TurtleChallange.Logic.Tests.Helpers;
 using TurtleChallange.Logic.Processor.Models;
+using TurtleChallange.Logic.Extensions;
 
 namespace TurtleChallange.Logic.Tests.Processor
 {
     public class GameProcessorTest
     {
+        private readonly IExternalLogger logger = new TestsLogger();
+
         [Fact]
         public void Ctor_Throws_ArgumentNullException_When_BoardIsNull()
         {
@@ -62,7 +64,7 @@ namespace TurtleChallange.Logic.Tests.Processor
         {
             // Arrange
             GameProcessor processor = CreateKnownGame();
-            processor.DumpToDiagnostics();
+            processor.DumpToLog(logger);
 
             // Act
             Action act = () =>
@@ -87,7 +89,7 @@ namespace TurtleChallange.Logic.Tests.Processor
         {
             // Arrange
             GameProcessor processor = CreateKnownGame();
-            processor.DumpToDiagnostics();
+            processor.DumpToLog(logger);
 
             // Act
             Action act = () =>
@@ -113,7 +115,7 @@ namespace TurtleChallange.Logic.Tests.Processor
         {
             // Arrange
             GameProcessor processor = CreateKnownGame();
-            processor.DumpToDiagnostics();
+            processor.DumpToLog(logger);
 
             // Act
             Action act = () =>
@@ -132,7 +134,7 @@ namespace TurtleChallange.Logic.Tests.Processor
         {
             // Arrange
             GameProcessor processor = CreateKnownGame();
-            processor.DumpToDiagnostics();
+            processor.DumpToLog(logger);
 
             // Act
             Action act = () =>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using TurtleChallange.Logic.Models;
 
-namespace TurtleChallange.Logic.Tests.Helpers
+namespace TurtleChallange.Logic.Extensions
 {
     public static class BoardModelExtensions
     {
-        public static void DumpToDiagnostics(this BoardModel boardModel)
+        public static void DumpToLog(this BoardModel boardModel, IExternalLogger logger)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -17,7 +17,7 @@ namespace TurtleChallange.Logic.Tests.Helpers
                 {
                     Point current = new Point(columnIdx, lineIdx);
 
-                    switch(boardModel.GetPositionStatus(current))
+                    switch (boardModel.GetPositionStatus(current))
                     {
                         case TileEnum.Free:
                             sb.Append("-");
@@ -36,7 +36,7 @@ namespace TurtleChallange.Logic.Tests.Helpers
                 sb.AppendLine();
             }
 
-            System.Diagnostics.Trace.WriteLine(sb.ToString());
+            logger.Log(sb.ToString());
         }
     }
 }

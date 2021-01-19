@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using TurtleChallange.Logic.Extensions;
 using TurtleChallange.Logic.Models;
-using TurtleChallange.Logic.Tests.Helpers;
 using Xunit;
 using static TurtleChallange.Logic.Tests.TestData.Models.BoardModelTestData;
 
@@ -12,6 +12,7 @@ namespace TurtleChallange.Logic.Tests.Models
 {
     public class BoardModelTests
     {
+        private readonly IExternalLogger logger = new TestsLogger();
 
         [Fact]
         public void Ctor_Throws_ArgumentException_When_Width_DontComply()
@@ -186,7 +187,7 @@ namespace TurtleChallange.Logic.Tests.Models
 
             // Assert
             act.Should().NotThrow();
-            board.DumpToDiagnostics();
+            board.DumpToLog(logger);
         }
     }
 }

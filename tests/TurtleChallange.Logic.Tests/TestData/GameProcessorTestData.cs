@@ -3,7 +3,6 @@ using System.Linq;
 using TurtleChallange.Logic.Models;
 using TurtleChallange.Logic.Processor;
 using static TurtleChallange.Logic.Tests.TestData.Models.BoardModelTestData;
-using TurtleChallange.Logic.Tests.Helpers;
 using System.Collections.Generic;
 
 namespace TurtleChallange.Logic.Tests.TestData

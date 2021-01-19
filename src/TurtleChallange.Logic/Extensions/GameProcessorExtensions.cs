@@ -4,11 +4,11 @@ using System.Text;
 using TurtleChallange.Logic.Models;
 using TurtleChallange.Logic.Processor;
 
-namespace TurtleChallange.Logic.Tests.Helpers
+namespace TurtleChallange.Logic.Extensions
 {
     public static class GameProcessorExtensions
     {
-        public static void DumpToDiagnostics(this GameProcessor processor)
+        public static void DumpToLog(this GameProcessor processor, IExternalLogger logger)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -19,7 +19,17 @@ namespace TurtleChallange.Logic.Tests.Helpers
                     // check if turtle is here.
                     if (processor.Turtle.Position.X == column && processor.Turtle.Position.Y == line)
                     {
-                        sb.Append("T");
+                        string head;
+                        switch(processor.Turtle.Orientation)
+                        {
+                            case TurtleHeadOrientation.North: head = "N"; break;
+                            case TurtleHeadOrientation.East:  head = "E"; break;
+                            case TurtleHeadOrientation.South: head = "S"; break;
+                            case TurtleHeadOrientation.West: head = "W"; break;
+                            default: throw new NotSupportedException();
+                        }
+
+                        sb.Append(head);
                         continue;
                     }
 
@@ -34,7 +44,7 @@ namespace TurtleChallange.Logic.Tests.Helpers
                             sb.Append("*");
                             break;
                         case TileEnum.Exit:
-                            sb.Append("E");
+                            sb.Append("L");
                             break;
 
                         default: throw new NotSupportedException();
@@ -44,7 +54,7 @@ namespace TurtleChallange.Logic.Tests.Helpers
                 sb.AppendLine();
             }
 
-            System.Diagnostics.Trace.WriteLine(sb.ToString());
+            logger.Log(sb.ToString());
         }
     }
 }
