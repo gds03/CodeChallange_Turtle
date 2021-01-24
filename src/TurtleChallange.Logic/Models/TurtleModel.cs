@@ -28,5 +28,29 @@ namespace TurtleChallange.Logic.Models
         {
             Orientation = (TurtleHeadOrientation)(((int)Orientation + 1) % AvailablePositions);
         }
+
+        public void MoveStraight()
+        {
+            switch (Orientation)
+            {
+                case TurtleHeadOrientation.North:
+                    Position.Y -= 1;
+                    break;
+
+                case TurtleHeadOrientation.East:
+                    Position.X += 1;
+                    break;
+
+                case TurtleHeadOrientation.South:
+                    Position.Y += 1;
+                    break;
+
+                case TurtleHeadOrientation.West:
+                    Position.X -= 1;
+                    break;
+
+                default: throw new NotSupportedException();
+            }
+        }
     }
 }

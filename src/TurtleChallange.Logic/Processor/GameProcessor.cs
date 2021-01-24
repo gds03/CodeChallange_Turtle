@@ -64,34 +64,28 @@ namespace TurtleChallange.Logic.Processor
                 case TurtleHeadOrientation.North:
                     if (Turtle.Position.Y == 0)
                         return StepResult.WallHit;
-                    
-                    Turtle.Position.Y -= 1;
                     break;
 
                 case TurtleHeadOrientation.East:
                     if (Turtle.Position.X == Board.Width - 1)
                         return StepResult.WallHit;
-
-                    Turtle.Position.X += 1;
                     break;
 
                 case TurtleHeadOrientation.South:
                     if (Turtle.Position.Y == Board.Height - 1)
                         return StepResult.WallHit;
-
-                    Turtle.Position.Y += 1;
                     break;
 
                 case TurtleHeadOrientation.West:
                     if (Turtle.Position.X == 0)
                         return StepResult.WallHit;
-
-                    Turtle.Position.X -= 1;
                     break;
 
                 default: throw new NotSupportedException();
             }
 
+            // move turtle freely
+            Turtle.MoveStraight();
 
             TileEnum status = Board.GetPositionStatus(Turtle.Position);
 
